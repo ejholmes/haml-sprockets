@@ -20,10 +20,7 @@ module Haml
         haml_code = data.dup
         haml_code = haml_code.gsub(/\\/,"\\\\").gsub(/\'/,"\\\\'").gsub(/\n/,"\\n")
 
-        haml_path = File.expand_path("../../vendor/assets/javascripts/haml.js", __FILE__)
-        haml_lib = File.read(haml_path)
-        context = ExecJS.compile(haml_lib)
-        return context.eval("Haml.optimize(Haml.compile('#{haml_code}', {escapeHtmlByDefault: true}))")
+        "Haml('#{haml_code}')"
       end
     end
   end
